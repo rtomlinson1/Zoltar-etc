@@ -5,10 +5,6 @@ import time
 # and based on the choice displays lucky numbers, fortune cookie advice, or tells the future
 # it is based loosely on the boardwalk game Zoltar the Magnificent
 
-# does the user want to keep playing? initial is true
-zoltar = True
-
-
 # function definitions
 # function to look like Zoltar is thinking
 def thinking():
@@ -36,24 +32,8 @@ def lucky_numbers():
     return random.randint(10, 99)
 
 
-# this function will allow the user to make another choice from Zoltar
-def again():
-    i = ''
-    while i != 'y' and i != 'n':
-        print('\n', 'Would you like to play again?  y or n ')
-        i = input()
-        if i == str.lower('y'):
-            print('Very well,')
-            return i
-        elif i == str.lower('n'):
-            print('Goodbye then.')
-            return i
-        else:
-            print('Please enter only y or n')
-
-
 # begin output
-while zoltar == True:
+while True:
     print('Welcome. I am Zoltar the Magnificent. If you dare, you may seek my wisdom by selecting a choice below:')
     print('1 - Seek your fortune. But beware, you may not like what your future holds!')
     print('2 - Ask for my advice. It is up to you to decipher its grand meaning.')
@@ -83,18 +63,28 @@ while zoltar == True:
         thinking()
         print('You have chosen to have your fortune told to you. Zoltar says:', '\n')
         print(fortune_advice('advice_fortunes/fortune.txt'))
-        again()
 
     # advice seeker
     elif int(my_int) == 2:
         thinking()
         print('You have chosen to seek advice. Zoltar says:', '\n')
         print(fortune_advice('advice_fortunes/advice.txt'))
-        again()
 
     # lucky numbers
     else:
         thinking()
         print('You have chosen to reveal your lucky numbers. Zoltar says')
         print(lucky_numbers())
-        again()
+
+    i = ''
+    while i != 'y' and i != 'n':
+        print('\n', 'Would you like to play again?  y or n ')
+        i = input()
+    if i == str.lower('y'):
+        print('Very well,')
+        continue
+    elif i == str.lower('n'):
+        print('Goodbye then.')
+        break
+    else:
+        print('Please enter only y or n')
